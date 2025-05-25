@@ -90,13 +90,50 @@
             display: inline-block;
             color: #2c3e50;
         }
-        .contact-info {
-            text-align: center;
-            margin-bottom: 30px;
+
+        /* --- NUEVAS CLASES PARA LA ESTRUCTURA DE LA FILA DE CONTACTO E IMAGEN --- */
+        .personal-info-row {
+            display: flex; /* Permite que los elementos internos se coloquen en fila */
+            justify-content: space-between; /* Espacio entre las columnas */
+            align-items: flex-start; /* Alinea los elementos al inicio de la fila */
+            gap: 20px; /* Espacio entre las columnas */
+            flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
         }
-        .contact-info p {
+
+        .contact-details-col {
+            flex: 2; /* Ocupa más espacio que la columna de la imagen */
+            min-width: 300px; /* Ancho mínimo para la columna de detalles */
+        }
+
+        .image-col {
+            flex: 1; /* Ocupa menos espacio */
+            display: flex;
+            justify-content: center; /* Centra la imagen horizontalmente */
+            align-items: flex-start; /* Alinea la imagen al inicio verticalmente */
+            min-width: 150px; /* Ancho mínimo para la columna de la imagen */
+        }
+
+        .profile-pic {
+            max-width: 100%; /* Asegura que la imagen no se desborde */
+            height: auto; /* Mantiene la proporción de la imagen */
+            border-radius: 8px; /* Opcional: bordes redondeados para la imagen */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: sombra para la imagen */
+        }
+        /* --- FIN NUEVAS CLASES --- */
+
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alinea items a la izquierda */
+            margin-bottom: 30px;
+            padding-left: 0; /* No necesitamos padding aquí si el padre ya tiene buen layout */
+        }
+        .contact-info p, .contact-info .contact-link {
             margin: 5px 0;
             font-size: 1.1em;
+            width: 100%; /* Asegura que los párrafos tomen el ancho completo disponible */
+            text-align: left; /* Asegura que el texto dentro del párrafo esté a la izquierda */
         }
         .contact-info a {
             color: #3498db;
@@ -104,6 +141,14 @@
         }
         .contact-info a:hover {
             text-decoration: underline;
+        }
+        .contact-info .friend-link-container {
+            width: 100%; /* Asegura que el contenedor del enlace del amigo ocupe todo el ancho */
+            margin-top: 5px;
+        }
+        .contact-info .friend-link-container a {
+            display: block; /* Hace que el enlace sea un bloque para que ocupe todo el ancho */
+            padding: 5px 0;
         }
         .skill-category {
             margin-bottom: 15px;
@@ -134,6 +179,13 @@
                 -webkit-columns: 1;
                 -moz-columns: 1;
             }
+            .personal-info-row {
+                flex-direction: column; /* Apila las columnas en pantallas pequeñas */
+            }
+            .contact-details-col, .image-col {
+                min-width: unset; /* Quita el ancho mínimo para mejor responsividad */
+                width: 100%; /* Ocupa todo el ancho disponible */
+            }
         }
     </style>
 </head>
@@ -143,19 +195,33 @@
 
         <div class="section">
             <h2>Datos Personales</h2>
-            <div class="details-list">
-                <div><strong>Apellido:</strong> RATHMANN</div>
-                <div><strong>Nombre:</strong> DIEGO ENRIQUE MIGUEL</div>
-                <div><strong>DNI:</strong> 21.828.315</div>
-                <div><strong>NIE:</strong> x4775995e</div>
-                <div><strong>Fecha de Nacimiento:</strong> 23/11/1970</div>
-                <div><strong>Ciudadanía:</strong> ITALIANA – ARGENTINA</div>
-                <div><strong>Domicilio:</strong> ESPAÑA</div>
-            </div>
-            <div class="contact-info">
-                <p><strong>Móvil:</strong> +54 9 221 5360122</p>
-                <p><strong>E-MAIL:</strong> <a href="mailto:rathmann@hotmail.com">rathmann@hotmail.com</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com" target="_blank">www.linkedin.com</a></p>
+            <div class="personal-info-row">
+                <div class="contact-details-col">
+                    <div class="details-list">
+                        <div><strong>Apellido:</strong> RATHMANN</div>
+                        <div><strong>Nombre:</strong> DIEGO</div>
+                        <div><strong>DNI Arg.:</strong> 21.828.315</div>
+                        <div><strong>NIE Esp.:</strong> x4775995e</div>
+                        <div><strong>Fecha de Nacimiento:</strong> 23/11/1970</div>
+                        <div><strong>Ciudadanía:</strong> ITALIANA</div>
+                    </div>
+                    <p><strong><br></strong>
+                    <div class="contact-info">
+                        <p><strong>Móvil 1:</strong> +54 9 221 536 0122</p>
+                        <p><strong>Móvil 2:</strong> +34 651 82 60 97</p>
+                        <p><strong>email:</strong> <a href="mailto:rathmann@hotmail.com">rathmann@hotmail.com</a></p>
+                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/diegorathmann/" target="_blank">www.linkedin.com</a></p>
+                        <div class="friend-link-container">
+                            <p><strong>Link de un amigo:</strong> <a href="http://www.ejemplo.com/amigo" target="_blank">Enlace de mi amigo</a></p>
+                        </div>
+                        <p><strong><br></strong>
+                        <p><strong>Domicilio:</strong> Palma de Mallorca - ESPAÑA </p>
+                    </div>
+                </div>
+                <div class="image-col">
+                    <img src="index_archivos/image001.jpg" alt="Foto de perfil" class="profile-pic">
+                    
+                    </div>
             </div>
         </div>
 
@@ -170,7 +236,7 @@
             <div class="details-list">
                 <div><strong>Especialidad:</strong> Desarrollo – Secure Code Analyst</div>
                 <div><strong>FUNCIONAL SAP:</strong> PI/PO - BPM – PORTAL - ABAP (FI – SD - MM)</div>
-                <div><strong>Integrador:</strong> sFTP - Idoc – Soap WS – Api Rest Token</div>
+                <div><strong>Integrador:</strong> sFTP - Idoc – Soap WS – Api Rest</div>
                 <div><strong>Idiomas:</strong> Español Nativo – Italiano – Inglés B</div>
             </div>
         </div>
